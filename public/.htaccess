@@ -1,0 +1,100 @@
+
+# ----------------------------------------------------------------------
+# Environment Name
+# ----------------------------------------------------------------------
+
+# Sets the environment that CodeIgniter runs under.
+SetEnv CI_ENV development
+
+# ----------------------------------------------------------------------
+# PHP Upload max
+# ----------------------------------------------------------------------
+php_value upload_max_filesize 512M
+php_value post_max_size 1024M
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+
+# ----------------------------------------------------------------------
+# UTF-8 encoding
+# ----------------------------------------------------------------------
+
+# Use UTF-8 encoding for anything served text/plain or text/html
+AddDefaultCharset utf-8
+
+# Force UTF-8 for a number of file formats
+<IfModule mod_mime.c>
+    AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Rewrite engine
+# ----------------------------------------------------------------------
+
+# Turning on the rewrite engine is necessary for the following rules and features.
+# FollowSymLinks must be enabled for this to work.
+<IfModule mod_rewrite.c>
+	#Options +FollowSymlinks
+	RewriteEngine On
+
+	# If you installed CodeIgniter in a subfolder, you will need to
+	# change the following line to match the subfolder you need.
+	# http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
+	#RewriteBase /
+
+	# Redirect Trailing Slashes...
+    #RewriteRule ^(.*)/$ /$1 [L,R=301]
+    RewriteCond $1 !^(index\.php|resources|robots\.txt)
+
+	# Rewrite "www.example.com -> example.com"
+	RewriteCond %{HTTPS} !=on
+	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+	# Checks to see if the user is attempting to access a valid file,
+    # such as an image or css document, if this isn't true it sends the
+    # request to the front controller, index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+	
+	# Ensure Authorization header is passed along
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+# ----------------------------------------------------------------------
+#  Cache
+# ----------------------------------------------------------------------
+<ifmodule mod_expires.c>
+	# Turn on Expires and set default to 0
+	ExpiresActive On
+	#ExpiresDefault A0
+	 
+	# Set up caching on media files for 1 year (forever?)
+	<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav)$">
+		ExpiresDefault A29030400
+		Header append Cache-Control "public"
+	</FilesMatch>
+	 
+	# Set up caching on media files for 1 week
+	<FilesMatch "\.(gif|jpg|jpeg|png|swf)$">
+		ExpiresDefault A604800
+		Header append Cache-Control "public"
+	</FilesMatch>
+	 
+	# Set up 2 Hour caching on commonly updated files
+	<FilesMatch "\.(xml|txt|html|js|css)$">
+		#ExpiresDefault A7200
+		ExpiresDefault "access plus 30 day"
+		Header append Cache-Control "proxy-revalidate"
+	</FilesMatch>
+</ifmodule>
+
+# ----------------------------------------------------------------------
+# Gzip compression
+# ----------------------------------------------------------------------
+<IfModule mod_deflate.c>
+	AddType image/svg+xml .svg
+	AddOutputFilterByType DEFLATE image/svg+xml text/text text/html text/plain text/xml text/css application/x-javascript application/javascript application/json text/javascript text/js
+</IfModule>

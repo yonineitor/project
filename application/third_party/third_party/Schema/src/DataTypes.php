@@ -1,0 +1,35 @@
+<?php
+return [
+	//Numeric
+	'INT',
+	'TINYINT',
+	'SMALLINT',
+	'MEDIUMINT',
+	'BIGINT',
+	'FLOAT',
+	'DOUBLE',
+	'DECIMAL',
+	//Date
+	'DATE',
+	'DATETIME',
+	'TIMESTAMP',
+	'TIME',
+	'YEAR',
+	//String
+	'CHAR',
+	'VARCHAR',
+	'BLOB',
+	'TEXT',
+	'TINYBLOB',
+	'TINYTEXT',
+	'MEDIUMBLOB',
+	'MEDIUMTEXT',
+	'LONGBLOB',
+	'LONGTEXT',
+	'ENUM',
+	'SET',
+	'BOOL',
+	'BINARY',
+	'VARBINARY',
+	'JSON'
+];

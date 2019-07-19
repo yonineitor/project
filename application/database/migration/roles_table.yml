@@ -1,0 +1,9 @@
+roles:
+    id:
+        type: int(4)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    title:
+        type: varchar(75)
+        default: ''

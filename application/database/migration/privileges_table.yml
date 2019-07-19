@@ -1,0 +1,12 @@
+privileges:
+    id:
+        type: int(4)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    name:
+        type: varchar(75)
+        default: ''
+    role_id:
+        type: int(4)
+        default: 0

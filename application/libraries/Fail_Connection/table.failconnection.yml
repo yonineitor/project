@@ -1,0 +1,20 @@
+fail_connection:
+    id:
+        type: bigint(20)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    key_name:
+        type: varchar(250)
+        index: true
+        default: ''
+    attempts:
+        type: int(11)
+        default: 0
+    invalid_type:
+        type: varchar(75)
+        default: ''
+    updated_at:
+        type: datetime
+        default: null
+        null: true

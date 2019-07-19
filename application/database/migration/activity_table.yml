@@ -1,0 +1,41 @@
+activity:
+    id:
+        type: BIGINT(20)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    user_id:
+        type: int(4)
+        default: 0
+        index: true
+    user:
+        type: varchar(75)
+        default: ''
+    relation_id:
+        type: BIGINT(20)
+        default: 0
+        index: true
+    subrelation_id:
+        type: BIGINT(20)
+        default: 0
+        index: true
+    activity_group:
+        type: varchar(85)
+        default: ''
+    activity_subgroup:
+        type: varchar(85)
+        default: ''
+    event:
+        type: varchar(85)
+        default: ''
+    data:
+        type: text
+        default: null
+    created_at:
+        type: datetime
+        default: null
+        null: false
+    updated_at:
+        type: datetime
+        default: null
+        null: true

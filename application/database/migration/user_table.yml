@@ -1,0 +1,58 @@
+user:
+    id:
+        type: int(8)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    email:
+        type: varchar
+        constraint: 120
+        null: false
+    password:
+        type: varchar(120)
+        null: false
+    username:
+        type: varchar(75)
+        default: ''
+        null: false
+        index: true
+    name:
+        type: varchar(120)
+        default: ''
+    last_name:
+        type: varchar(120)
+        default: ''
+    middle_name:
+        type: varchar(120)
+        default: ''
+    status:
+        type: smallint(1)
+        default: 1
+    is_admin:
+        type: smallint(1)
+        default: 0
+    roles:
+        type: text
+        default: null
+        null: true
+    date_of_birth:
+        type: char(10)
+        default: ''
+    reset_token:
+        type: varchar(120)
+        default: ''
+    reset_token_date:
+        type: datetime
+        default: null
+    last_connection:
+        type: datetime
+        default: null
+        null: true
+    updated_at:
+        type: datetime
+        default: null
+        null: true
+    created_at:
+        type: datetime
+        default: null
+        null: true

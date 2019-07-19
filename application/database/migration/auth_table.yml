@@ -1,0 +1,44 @@
+auth:
+    id:
+        type: bigint(20)
+        unsigned: true
+        auto_increment: true
+        primary: true
+    user_id:
+        type: int(11)
+        default: 0
+        index: true
+    auth_type:
+        type: smallint
+        constraint: 1
+        default: 1
+    credentials:
+        type: varchar(512)
+        default: ''
+    device_name:
+        type: varchar(1024)
+        default: ''
+    device_version: 
+        type: varchar(1024)
+        default: ''
+    device_id:
+        type: varchar(120)
+        default: ''
+    ip:
+        type: varchar(120)
+        default: ''
+    firebase_token:
+        type: varchar(1024)
+        default: ''
+    payload:
+        type: text
+        default: null 
+    disabled:
+        type: smallint(1)
+        default: 0
+    updated_at:
+        type: datetime
+        default: null
+    created_at:
+        type: datetime
+        default: null
